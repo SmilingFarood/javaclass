@@ -1,6 +1,8 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -43,8 +45,110 @@ public class Main {
 //        System.out.println("Sum is: " + mySum(num) + " and product is: " + myProduct(num) + " Average is: " + myAve(num));
 //        searchOcc();
 //        findMaxAndMin();
-        repetition();
+//        repetition();
 
+//        System.out.println(Arrays.toString(findRestaurant()));
+//        System.out.println(findRestaurant());
+        char [] myStrings = {'h', 'e', 'l', 'l', 'o', 'a'};
+        System.out.println(Arrays.toString(reverseString(myStrings)));
+
+    }
+
+    public static char[] reverseString(char[] s) {
+        int j = s.length - 1;
+        char temp = 'a';
+        char [] tempo = new char[s.length];
+        for (int i = 0; i < (s.length)/2; i++) {
+            temp = s[j];
+            s[j] = s[i];
+            s[i] = temp;
+            tempo[i] = s[j];
+            j--;
+        }
+        return s;
+    }
+
+//    public static String[] findRestaurant() {
+//        String[] list1 = {"Shogun", "Tapioca Express", "Burger King", "KFC"};
+//        String[] list2 = {"Piatti", "The Grill at Torrey Pines", "Hungry Hunter Steakhouse", "Shogun"};
+//        List<String> myList = new ArrayList<String>();
+//        String[] result = new String[list1.length];
+//        String[] myResult = new String[1];
+//        int k = 0;
+//        for (int i = 0; i < list1.length; i++) {
+//            for (int j = 0; j < list2.length; j++) {
+//                if (list1[i].equals(list2[j])) {
+//                    myList.add(list1[i]);
+////                    result[k++] = list1[i];
+//                }
+//            }
+//        }
+//        String[] finalResult = new String[myList.size()];
+//        for (int m = 0; m < finalResult.length; m++) {
+//            finalResult[m] = myList.get(m);
+//        }
+////        myResult[0] = result[0];
+//        return finalResult;
+//    }
+
+    public static int[] oddFirst() {
+        int[] numbers = {1, 2, 4, 5, 7, 9, -2, 3};
+        int[] temp = new int[numbers.length];
+        int j = 0;
+        int k = numbers.length - 1;
+        for (int i = 0; i < numbers.length; i++) {
+            if (numbers[i] % 2 != 0) {
+                temp[j++] = numbers[i];
+            } else if (numbers[i] % 2 == 0) {
+                temp[k--] = numbers[i];
+            }
+        }
+
+        return temp;
+    }
+
+    public static String plusMult(List<Integer> A) {
+        String and = "";
+        for (int i = 0; i <= A.size(); i++) {
+            if (A.get(i) == 0) {
+                System.out.println(A.get(i));
+            }
+        }
+        return and;
+    }
+
+    public static double trimMean() {
+        int[] arr = new int[]
+//                {1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3};
+                {6, 0, 7, 0, 7, 5, 7, 8, 3, 4, 0, 7, 8, 1, 6, 8, 1, 1, 2, 4, 8, 1, 9, 5, 4, 3, 8, 5, 10, 8, 6, 6, 1, 0, 6, 10, 8, 2, 3, 4};
+        double mean = 0;
+        double divisor = arr.length - 2;
+        Arrays.sort(arr);
+        double percent = ((double) 5 / (double) 100 * (double) arr.length);
+        double sum = 0;
+        for (double i = percent; i < arr.length - percent; i++) {
+            sum += arr[(int) i];
+        }
+        System.out.println("Perc " + (int) percent);
+
+        mean = sum / divisor;
+        return mean;
+    }
+
+    public static int searchInsert() {
+        int target = 2;
+        int[] nums = new int[]{1, 3, 5, 6};
+        int j = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == target || nums[i] > target) {
+                j = i;
+                break;
+            }
+            if (target > nums[nums.length - 1]) {
+                j = nums.length;
+            }
+        }
+        return j;
     }
 
     public static void repetition() {
