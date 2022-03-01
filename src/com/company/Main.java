@@ -1,9 +1,6 @@
 package com.company;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
 
@@ -49,16 +46,167 @@ public class Main {
 
 //        System.out.println(Arrays.toString(findRestaurant()));
 //        System.out.println(findRestaurant());
-        char [] myStrings = {'h', 'e', 'l', 'l', 'o', 'a'};
-        System.out.println(Arrays.toString(reverseString(myStrings)));
+//        char [] myStrings = {'h', 'e', 'l', 'l', 'o', 'a'};
+//        System.out.println(Arrays.toString(reverseString(myStrings)));
+//        System.out.println(reverse(0123));
+//        reverse(1230);
+//        System.out.println("Cipher Encrypt " + encrypt("ATTACKATONCE", 4));
+//        System.out.println("Cipher Decrypt " + decrypt("EXXEGOEXSRGI", 4));
+//        System.out.println(printRow(new int[][]{{1, 3, 5}, {2, 4, 6}}));
+        int[][] numbersArray = new int[][]{{1, 3, 5, 7}, {2, 4, 6, 8}, {3, 5, 6, 8}, {2, 2, 2, 2}};
+//        printRow(numbersArray);
+//        printColumn(numbersArray);
+//        printMaxOnRow(numbersArray);
+//        chall();
+//        uniqueList();
+        selectOption();
+    }
 
+    public static void selectOption() {
+        ArrayList<Integer> items = new ArrayList<>();
+        Scanner sc = new Scanner(System.in);
+        int option;
+        do {
+            System.out.println("1. Add\n2. Remove\n3. Display\n4. Exit");
+            System.out.print("Your Choice: ");
+            option = sc.nextInt();
+
+            if (option == 1) {
+                System.out.print("Enter an integer: ");
+                items.add(sc.nextInt());
+                System.out.println("Added.");
+            } else if (option == 2) {
+                System.out.print("Enter an integer to remove: ");
+                int temp = sc.nextInt();
+                if (items.contains(temp)) {
+                    items.remove(Integer.valueOf(temp));
+                    System.out.println(temp + " Removed.");
+                } else {
+                    System.out.println(temp + " not found.");
+                }
+
+            } else if (option == 3) {
+                System.out.println("Your List " + items);
+
+            }
+
+        } while (option != 4);
+        System.out.println("Bye.");
+    }
+
+
+    public static void uniqueList() {
+        Scanner sc = new Scanner(System.in);
+        ArrayList<Integer> items = new ArrayList<>();
+        ArrayList<Integer> newItem = new ArrayList<>();
+        System.out.print("Enter the length of your list: ");
+        int len = sc.nextInt();
+        for (int i = 1; i <= len; i++) {
+            System.out.print("Enter the number " + i + " item: ");
+            items.add(sc.nextInt());
+        }
+        Collections.sort(items);
+        for (int item : items) {
+            if (!newItem.contains(item)) {
+                newItem.add(item);
+            }
+        }
+        System.out.println(newItem);
+    }
+
+    public static void chall() {
+        int[] arr = {5, 2, 2, 0};
+        int index = 0;
+        for (int item : arr) {
+            System.out.println(item + " " + index++);
+        }
+    }
+
+    public static void printMaxOnRow(int[][] nums) {
+        int max = 0;
+        int index = 1;
+        for (int i = 0; i < nums.length; i++) {
+            max = 0;
+            for (int j = 0; j < nums[i].length; j++) {
+                if (nums[i][j] > max)
+                    max = nums[i][j];
+            }
+            System.out.println("Max of row " + index + " is " + max);
+            index++;
+        }
+    }
+
+    public static void printColumn(int[][] numbs) {
+        int num = 0;
+        int index = 0;
+        for (int i = 0; i < numbs.length; i++) {
+            num = 0;
+            for (int j = 0; j < numbs[i].length; j++) {
+                num += numbs[j][i];
+            }
+            index++;
+            System.out.println("Sum of Column " + index + ": " + num);
+        }
+
+    }
+
+
+    public static void printRow(int[][] nums) {
+        int num = 0;
+        int index = 0;
+        for (int i = 0; i < nums.length; i++) {
+            num = 0;
+            for (int j = 0; j < nums[i].length; j++) {
+                num += nums[i][j];
+            }
+            index++;
+            System.out.println("Sum of row " + index + ": " + num);
+        }
+    }
+
+    public static StringBuffer encrypt(String text, int s) {
+        StringBuffer result = new StringBuffer();
+        for (int i = 0; i < text.length(); i++) {
+            if (Character.isUpperCase(text.charAt(i))) {
+                char ch = (char) (((int) text.charAt(i) + s - 65) % 26 + 65);
+                result.append(ch);
+            } else {
+                char ch = (char) (((int) text.charAt(i) + s - 97) % 26 + 97);
+                result.append(ch);
+            }
+        }
+        return result;
+    }
+
+    public static StringBuffer decrypt(String text, int s) {
+        StringBuffer result = new StringBuffer();
+        for (int i = 0; i < text.length(); i++) {
+            if (Character.isUpperCase(text.charAt(i))) {
+                char ch = (char) (((int) text.charAt(i) - s - 65) % 26 + 65);
+                result.append(ch);
+            } else {
+                char ch = (char) (((int) text.charAt(i) - s - 97) % 26 + 97);
+                result.append(ch);
+            }
+        }
+        return result;
+    }
+
+    public static int reverse(int x) {
+        int y = 0;
+        System.out.println(x);
+        do {
+            y = x % 10;
+            x /= 10;
+        } while (x % 10 != 0);
+        return x;
     }
 
     public static char[] reverseString(char[] s) {
         int j = s.length - 1;
         char temp = 'a';
-        char [] tempo = new char[s.length];
-        for (int i = 0; i < (s.length)/2; i++) {
+        char[] tempo = new char[s.length];
+        for (int i = 0; i < (s.length) / 2; i++) {
             temp = s[j];
             s[j] = s[i];
             s[i] = temp;
